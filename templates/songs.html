@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Мои любимые песни
+{% endblock %}
+
+{% block content %}
+<h1 class="mb-5">Мои любимые песни</h1>
+
+<div class="card-columns">
+  <div class="row">
+  {% for car in cars %}
+    <div class="col-md-3">
+      <div class="card mb-3">
+        <img src="https://w.forfun.com/fetch/dd/dde6c0ce845ec827af95a347424aba2a.jpeg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Заголовок карточки</h5>
+          <p class="card-text">Это более широкая карточка с вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту. Этот контент немного длиннее.</p>
+          <p class="card-text"><small class="text-muted">Последнее обновление 3 мин. назад</small></p>
+        </div>
+      </div>
+      
+    </div>
+  {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
