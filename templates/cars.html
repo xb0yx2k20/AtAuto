@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Мои любимые песни
+ATAuto
 {% endblock %}
 
 {% block content %}
-<h1 class="mb-5">Catalog</h1>
+<h1 class="mb-5">AtAuto Catalog</h1>
 
 <form class="mb-3" method="GET" action="{{ url_for('cars') }}">
     <div class="input-group">
@@ -20,7 +20,7 @@
     <div class="col-md-3">
       <div class="card mb-3">
           <!--<div class="card-header fw-bold">{{ car.Mark }}</div>-->
-          <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div id="carousel{{ car.CarID }}" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <img src="https://w.forfun.com/fetch/dd/dde6c0ce845ec827af95a347424aba2a.jpeg" class="d-block w-100 card-img-top" alt="...">
@@ -30,11 +30,11 @@
               </div>
              
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel{{ car.CarID }}"  data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Предыдущий</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel{{ car.CarID }}"  data-bs-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Следующий</span>
             </button>
