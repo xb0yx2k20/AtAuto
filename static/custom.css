@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(255, 255, 255);
+}
+
+.header-h1 h1 {
+    position: relative;
+    padding-bottom: .5rem;
+    font-size: 2rem;
+    text-transform: uppercase;
+    text-align: center;
+    color: #00838f;
+  }
+.header-h1 h1::before {
+    content: "";
+    position: absolute;
+    border-bottom: 2px solid #00838f;
+    bottom: .25rem;
+    left: 50%;
+    width: 20%;
+    transform: translateX(-50%);
+  }
+.header-h1 h1::after {
+    content: "";
+    position: absolute;
+    border-bottom: 2px solid #00838f;
+    bottom: 0;
+    left: 50%;
+    width: 10%;
+    transform: translateX(-50%);
+  }
