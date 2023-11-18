@@ -7,7 +7,7 @@
   box-shadow: 0 0 15px #00838f; /* добавляем тень при наведении на карточку */
   transition: box-shadow 0.2s ease-out; /* добавляем плавный переход */
 }
-x
+
 
 .header-h1 h1 {
     position: relative;

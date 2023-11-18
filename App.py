@@ -30,7 +30,10 @@ def cars_search():
 
 
 
-
+@app.route('/cars/<car_inf>/<car_id>', methods=['GET'])
+def car_info(car_inf, car_id):
+    car = Car.query.filter_by(CarID=car_id).first()
+    return render_template('car_info.html', carInfo=car)
 
 admin = Admin(app)
 admin.add_view(CarView(Car, db.session))
