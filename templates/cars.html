@@ -19,12 +19,11 @@ ATAuto
 <div class="card-columns">
   <div class="row">
   {% for car in cars %}
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-4 col-sm-6"" >
       <a href="/cars/{{ car.Model + car.Year | string}}/{{ car.CarID }}" style="text-decoration: none;" class="card-link">
 
     
-        <div class="card mb-3">
-            <!--<div class="card-header fw-bold">{{ car.Mark }}</div>-->
+        <div class="card mb-3" >
             <div id="carousel{{ car.CarID }}" class="carousel slide" data-bs-ride="carousel">
               <div class="carousel-indicators">
                 {% for photo in car.photos %}
@@ -32,14 +31,12 @@ ATAuto
                     </button>
                 {% endfor %}
               </div>
-              <div class="carousel-inner">
-                <div class="carousel-inner">
+              <div class="imgs carousel-inner">
                   {% for photo in car.photos %}
                       <div class="carousel-item {% if loop.first %}active{% endif %}">
-                          <img src="{{ photo.url }}" class="d-block w-100 card-img-top" alt="...">
+                          <img src="{{ photo.url }}" class="prevImg d-block w-100 card-img-top" alt="...">
                       </div>  
                   {% endfor %}  
-                </div> 
               </div>
               <button class="carousel-control-prev фс" type="button" data-bs-target="#carousel{{ car.CarID }}"  data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -50,6 +47,7 @@ ATAuto
                 <span class="visually-hidden">Следующий</span>
               </button>
             </div>
+
             <div class="card-body">
                 <p class="badge bg-primary text-wrap" style="font-size: 90%;">{{ car.Mark +' ' + car.Model }}</p>
                 <p class="badge text-wrap" style="font-size: 90%; background-color: green; box-shadow: 20px;">{{ car.price }}₽</p>

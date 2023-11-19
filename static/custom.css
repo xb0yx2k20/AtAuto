@@ -9,6 +9,17 @@
 }
 
 
+
+.carousel-inner .prevImg {
+  transition: transform 0.2s ease-out; /* Добавление плавного перехода */
+}
+
+.carousel-inner .prevImg:hover {
+  /*transform: scale(1.1); /* Изменение масштаба при наведении */
+  
+}
+
+
 .header-h1 h1 {
     position: relative;
     padding-bottom: .5rem;
@@ -21,7 +32,7 @@
     content: "";
     position: absolute;
     border-bottom: 2px solid #00838f;
-    bottom: .25rem;
+    bottom: .35rem;
     left: 50%;
     width: 20%;
     transform: translateX(-50%);
@@ -34,4 +45,8 @@
     left: 50%;
     width: 10%;
     transform: translateX(-50%);
-  }
+}
+
+.carousel-inner .carousel-item {
+  transition: transform 0.4s ease; /* Уменьшаем время анимации до 0.5 секунд */
+}

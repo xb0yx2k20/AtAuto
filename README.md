@@ -1,6 +1,6 @@
 # To Do
 
 * Ajax + js search in real time
-* images
-* delete auto scrolling caorusel
-* swipe bug
+* filter
+* touch hover img scale
+* fix carousel

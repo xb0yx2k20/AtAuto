@@ -1,0 +1,1 @@
+let x = new bootstrap.Carousel('#myCarousel');
