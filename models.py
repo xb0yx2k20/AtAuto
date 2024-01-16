@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_login import UserMixin
 from sqlalchemy import CheckConstraint
 
 app = Flask(__name__)
@@ -23,8 +24,16 @@ class Car(db.Model):
     ownsNum = db.Column(db.Integer,  nullable=True)
     price = db.Column(db.String)
 
+
 class CarPhoto(db.Model):
     __tablename__ = 'car_photos'
     id = db.Column(db.Integer, primary_key=True)
     car_id = db.Column(db.Integer, db.ForeignKey('cars.CarID'))
     url = db.Column(db.String(200))
+
+
+class adminLog(UserMixin, db.Model):
+    __tablename__ = 'admin'
+    id = db.Column(db.Integer, primary_key=True)
+    login = db.Column(db.String, nullable=False)
+    password = db.Column(db.String, nullable=False)

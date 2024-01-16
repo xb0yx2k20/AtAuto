@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
-from models import Car, CarPhoto, db
-from adminView import CarView
+from models import Car, CarPhoto, adminLog, db
+from adminView import CarView, LogView
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
@@ -42,6 +42,12 @@ def car_info(car_inf, car_id):
 def admin_log():
     return render_template('admin_log.html')
 
+
+admin = Admin(app)
+admin.add_view(CarView(Car, db.session))
+admin.add_view(LogView(adminLog, db.session))
+#admin.add_view(AlbumView(Car, db.session))
+admin.add_view(ModelView(CarPhoto, db.session))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
