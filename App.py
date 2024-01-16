@@ -4,6 +4,7 @@ from adminView import CarView
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
+import flask_login
 
 
 app = Flask(__name__)
@@ -13,10 +14,12 @@ app.config['SECRET_KEY'] = '1029384756'
 
 db.init_app(app)
 
+
 @app.route('/cars')
 def cars():
     cars_list = Car.query.all()    
     return render_template('cars.html', cars=cars_list)
+
 
 @app.route('/cars/search', methods=['GET'])
 def cars_search():
@@ -29,16 +32,16 @@ def cars_search():
     return render_template('cars.html', cars=cars_list)
 
 
-
 @app.route('/cars/<car_inf>/<car_id>', methods=['GET'])
 def car_info(car_inf, car_id):
     car = Car.query.filter_by(CarID=car_id).first()
     return render_template('car_info.html', carInfo=car)
 
-admin = Admin(app)
-admin.add_view(CarView(Car, db.session))
-#admin.add_view(AlbumView(Car, db.session))
-admin.add_view(ModelView(CarPhoto, db.session))
+
+@app.route('/adminLog/', methods=['POST', 'GET'])
+def admin_log():
+    return render_template('admin_log.html')
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
