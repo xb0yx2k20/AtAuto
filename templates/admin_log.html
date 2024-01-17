@@ -8,22 +8,22 @@ Login
 <div>
   <h1 style="text-align: center">Login</h1>
 </div>
-<form style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
-  <!-- Email input -->
+<form  method="POST" action="{{ url_for('admin_log') }}" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+
   <div class="form-outline mb-4">
-    <input type="email" id="form2Example1" class="form-control" />
-    <label class="form-label" for="form2Example1">Логин</label>
+    <input  class="form-control" type="username" id="username" name="username" required />
+    <label for="username" class="form-label">Логин</label>
   </div>
 
   <!-- Password input -->
   <div class="form-outline mb-4">
-    <input type="password" id="form2Example2" class="form-control" />
-    <label class="form-label" for="form2Example2">Пароль</label>
+    <input  class="form-control" type="password" id="password" name="password" required />
+    <label for="password" class="form-label">Пароль</label>
   </div>
 
 
   <!-- Submit button -->
-  <button type="button" class="btn btn-primary  btn-block mb-4">Sign in</button>
+  <button type="submit" class="btn btn-primary  btn-block mb-4">Sign in</button>
 
 
 </form>

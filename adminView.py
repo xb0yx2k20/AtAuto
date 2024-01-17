@@ -7,4 +7,4 @@ class CarView(ModelView):
 
 
 class LogView(ModelView):
-    column_list = ['login', 'password']
+    column_list = ['id', 'login', 'password']
