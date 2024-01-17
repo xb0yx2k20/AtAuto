@@ -44,7 +44,7 @@ class AuthException(HTTPException):
 
 
 admin = Admin(app)
-admin.add_view(MyModelView(Car, db.session))
+admin.add_view(CarView(Car, db.session))
 #admin.add_view(MyModelView(adminLog, db.session))
 admin.add_view(MyModelView(CarPhoto, db.session))
     
