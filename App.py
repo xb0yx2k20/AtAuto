@@ -12,6 +12,7 @@ from werkzeug.exceptions import HTTPException
 from flask_basicauth import BasicAuth
 from flask_bcrypt import check_password_hash
 
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///car.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -21,15 +22,18 @@ bcrypt = Bcrypt(app)
 basic_auth = BasicAuth(app)
 
 
-app.config['BASIC_AUTH_USERNAME'] = 'admin'
-app.config['BASIC_AUTH_PASSWORD'] = 'admin'
+with app.app_context():
+    app.config['BASIC_AUTH_USERNAME'] = adminLog.query.first().login
+    app.config['BASIC_AUTH_PASSWORD'] = adminLog.query.first().password
 
 class MyModelView(sqla.ModelView):
     def is_accessible(self):
-        if not basic_auth.authenticate():
+        auth = request.authorization
+        if not auth or not bcrypt.check_password_hash(app.config['BASIC_AUTH_PASSWORD'], auth.password) or not bcrypt.check_password_hash(app.config['BASIC_AUTH_USERNAME'], auth.username):
             raise AuthException('Not authenticated.')
         else:
             return True
+
 
     def inaccessible_callback(self, name, **kwargs):
         return redirect(basic_auth.challenge())
@@ -41,11 +45,9 @@ class AuthException(HTTPException):
             {'WWW-Authenticate': 'Basic realm="Login Required"'}
         ))
 
-
-
 admin = Admin(app)
 admin.add_view(CarView(Car, db.session))
-#admin.add_view(MyModelView(adminLog, db.session))
+admin.add_view(MyModelView(adminLog, db.session))
 admin.add_view(MyModelView(CarPhoto, db.session))
     
 
@@ -77,28 +79,16 @@ def car_info(car_inf, car_id):
     car = Car.query.filter_by(CarID=car_id).first()
     return render_template('car_info.html', carInfo=car)
 
-'''
-@app.route('/admin', methods=['POST', 'GET'])
-@login_required
-def admin_log():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        user = adminLog.query.filter_by(login=username).first()
-        if user and bcrypt.check_password_hash(user.password, password):  # Проверка хэшированного пароля
-            login_user(user)
-            return redirect(url_for('admin.index'))
-        else:
-            flash('Неверное имя пользователя или пароль', 'error')  # Добавляем сообщение об ошибке
-    
-        
-    return render_template('admin_log.html')
 
-admin = Admin(app)
-admin.add_view(CarView(Car, db.session))
-admin.add_view(LogView(adminLog, db.session))
-#admin.add_view(AlbumView(Car, db.session))
-admin.add_view(ModelView(CarPhoto, db.session))'''
+
+@app.route('/upl', methods=['POST', 'GET'])
+def upl():
+    # pic = request.files['pic']
+
+    # if not pic:
+    #     return "ffalse"
+    
+    return render_template('upl.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)

@@ -4,3 +4,6 @@
 * filter
 * touch hover img scale
 * fix carousel
+
+* admin logout
+* db img

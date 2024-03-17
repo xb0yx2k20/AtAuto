@@ -29,7 +29,8 @@ class CarPhoto(db.Model):
     __tablename__ = 'car_photos'
     id = db.Column(db.Integer, primary_key=True)
     car_id = db.Column(db.Integer, db.ForeignKey('cars.CarID'))
-    url = db.Column(db.String(200))
+    url = db.Column(db.LargeBinary)
+    photo = db.Column(db.LargeBinary)
 
 
 class adminLog(UserMixin, db.Model):
